@@ -1,10 +1,18 @@
 # Allows gitlab-ci-linter to be used as a pre-commit-hook with pre-commit
 # https://pre-commit.com/#pre-commit-configyaml---hooks
 - id: shfmt
-  name: shfmt
+  args: [-w]
   description: Format shell scripts
   entry: shfmt
   language: golang
   minimum_pre_commit_version: 2.4.0
+  name: shfmt
+  types: [shell]
+
+- id: shfmt-docker
   args: [-w]
+  description: Run shfmt Docker image to format shell scripts
+  entry: docker.pkg.github.com/cryptobanana/shfmt/shfmt
+  language: docker_image
+  name: shfmt-dockerized
   types: [shell]
